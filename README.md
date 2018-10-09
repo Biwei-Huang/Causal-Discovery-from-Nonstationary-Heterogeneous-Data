@@ -12,6 +12,7 @@ The code is written in Matlab R2017a.
 %%%%%%%%%%%%%
 IMPORTANT FUNCTIONS
 %%%%%%%%%%%%%
+
 function [gns, g, SP] = nonsta_cd_new(X,cond_ind_test,maxFanIn,alpha)
 %  Constraint-based causal Discovery from Nonstationary/heterogeneous Data
 
@@ -45,7 +46,7 @@ function [gns, g, SP] = nonsta_cd_new(X,cond_ind_test,maxFanIn,alpha)
 %%%%%%%%%%%%%
 EXAMPLE
 %%%%%%%%%%%%%
-example1.m and example2.m give two example of using this package.
+example1.m and example2.m give two examples in using this package.
 
 
 %%%%%%%%%%%%%
