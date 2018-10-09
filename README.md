@@ -14,10 +14,10 @@ function [gns, g, SP] = nonsta_cd_new(X,cond_ind_test,maxFanIn,alpha)
 OUTPUT: 
  * gns: - (n+1)_(n+1) matrix to represent recovered graph structure by the methods for Markov equivalence class learning on augmented causal graph & causal direction determination by making use of independently changing causal modules 
    * i->j: gns(i,j)=1; i-j: gns(i,j)=-1; i j: gns(i,j)=0 
-   * - the last row of gns indicates the connection of nonstationarity indicator (C) with other observed variables 
+   * the last row of gns indicates the connection of nonstationarity indicator (C) with other observed variables 
  * g: - (n+1)_(n+1) matrix to represent recovered graph structure only by % the methods for Markov equivalence class learning on augmented causal graph 
    * i->j: g(i,j)=1; i-j: g(i,j)=-1; i j: g(i,j)=0 
-   * - the last row of g indicates the connection of nonstationarity indicator (C) with other observed variables 
+   * the last row of g indicates the connection of nonstationarity indicator (C) with other observed variables 
    * ("gns" should have more oriented edges than "g") 
  * SP: - details of each independence test
  
