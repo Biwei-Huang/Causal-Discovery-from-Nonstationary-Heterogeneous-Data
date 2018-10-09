@@ -1,0 +1,88 @@
+Copyright (c) 
+ 2010-2011  Kun Zhang
+ 2010-2011  Jonas Peters
+ 2001-2006  Carl Edward Rasmussen
+ 1996-2001  Ian T. Nabney
+
+This package contains code to the paper
+"A kernel-based conditional independence test and application in causal discovery", K. Zhang, J. Peters, D. Janzing, and B. Schoelkopf, In Proceedings of the 27th Conference on Uncertainty in Artificial Intelligence (UAI 2011),  Barcelona, Spain, July 14-17, 2011.
+
+% Please see CONTENT for the content
+
+It is written in Matlab 7.7.0 and should work on any machine. 
+
+
+
+
+%%%%%%%%%%%%
+CODE NOT PROVIDED
+%%%%%%%%%%%%
+conditional hsic
+
+
+
+%%%%%%%%%%%%%
+IMPORTANT FUNCTIONS
+%%%%%%%%%%%%%
+function [pval, stat] = indtest_new(X, Y, Z, pars)
+% function [pval, stat] = indtest_new(X, Y, Z, pars)
+%
+% This function is a WRAPPER
+% Performs new method (submitted to UAI 2011)
+%
+% INPUT:
+%   X          Nxd1 matrix of samples (N data points, d1 dimensions)
+%   Y          Nxd2 matrix of samples (N data points, d2 dimensions)
+%   Z          Nxd3 matrix of samples (N data points, d3 dimensions)
+%   pars       structure containing parameters for the independence test
+%     .pairwise	    if true, the test is performed pairwise if d1>1 (standard: false)
+%     .bonferroni   if true, bonferroni correction is performed (standard: false)
+%     .width        kernel width (standard: 0, which results in an automatic -heuristic- choice)
+%
+% OUTPUT:
+%   pval      p value of the test
+%   stat      test statistic
+
+
+%%%%%%%%%%%%%
+REQUIREMENTS
+%%%%%%%%%%%%%
+This code requires the statistics toolbox and further the GPML toolbox (the old version, unfortunately). It is provided in the subfolder. Have a look at its README how to compile the mex files. This makes the toolbox faster. Make sure, the path is added in Matlab (e.g. 
+addpath('gpml-matlab/gpml')
+) 
+
+%%%%%%%%%%%%%
+EXAMPLE
+%%%%%%%%%%%%%
+As a first example type
+
+X=randn(300,1);
+Y=X+0.5*randn(300,1);
+Z=Y+0.5*randn(300,1);
+[p_val stat]=indtest_new(X,Z,[],[]);
+p_val % X and Z should be dependent
+[p_val stat]=indtest_new(X,Z,Y,[]);
+p_val % X and Z should be conditionally independent given Y
+
+into Matlab. 
+
+
+%%%%%%%%%%%%%
+REPRODUCING FIGURES
+%%%%%%%%%%%%%
+The exp_ files in the folder exp describe (hopefully self-explaining), how the experiments were performed in the paper. The folder mat-files contains the results.  
+
+
+%%%%%%%%%%%%%
+CITATION
+%%%%%%%%%%%%%
+If you use this code, please cite the following paper:
+K. Zhang, J. Peters, D. Janzing, and B. Schoelkopf,  "A kernel-based conditional independence test and application in causal discovery," In UAI 2011.
+
+%%%%%%%%%%%%%
+PROBLEMS
+%%%%%%%%%%%%%
+If you have problems or questions, do not hesitate to send an email to
+kzhang@tuebingen.mpg.de, or kun.kzhang@gmail.com
+
+

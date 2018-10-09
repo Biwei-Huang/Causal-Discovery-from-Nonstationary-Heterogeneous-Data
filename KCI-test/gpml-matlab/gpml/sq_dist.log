@@ -1,0 +1,106 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=mex 2010.8.3)  23 AUG 2010 14:14
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**sq_dist.c
+(./sq_dist.c
+This is MeX  Version 1.05  18 XII 1993  (B. Jackowski & M. Ry\'cko)
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.1 /* sq_
+          dist - a mex function to compute a matrix of all pairwise squared
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   \par 
+l.9 
+    
+? 
+
+Overfull \hbox (1652.47543pt too wide) in paragraph at lines 1--9
+[]\tenrm /* sq$[]\teni ist \tensy ^^@ \teni amexfunctiontocomputeamatrixofallpa
+irwisesquareddistancesbetweentwosetsofvectors; storedinthecolumnsofthetwomatric
+esthatareargumentstothefunction:Thelengthofthevectorsmustagree:Ifonlyasinglearg
+umentisgiven; themissingargumentistakentobeidenticaltothefirst:Ifanoptionalthir
+dmatrixargumentQisgiven; itmustbeofthesamesizeastheoutput; butinthiscaseavector
+ofthetracesoftheproductofQandthecoordinatewisesquareddistancesisreturned:$ |
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm /
+.\tenrm *
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm s
+.etc.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.12 #
+      include "mex.h"
+? q
+OK, entering \batchmode...
+! You can't use `macro parameter character #' in horizontal mode.
+l.13 #
+      include <math.h>
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.19     mexErrMsgTxt("Usage: C = sq_
+                                     dist(a,b)\n       or: C = sq_dist(a)\n ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Undefined control sequence.
+l.19     mexErrMsgTxt("Usage: C = sq_dist(a,b)\n
+                                                       or: C = sq_dist(a)\n ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.19 ... sq_dist(a,b)\n       or: C = sq_dist(a)\n
+                                                         or: c = sq_dist(a,b...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.19 ...t(a)\n       or: c = sq_dist(a,b,Q)\nwhere
+                                                   the b matrix may be empty...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Extra }, or forgotten $.
+l.54 }
+      
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+)
+! Emergency stop.
+<*> sq_dist.c
+             
+*** (job aborted, no legal \end found)
+
+No pages of output.

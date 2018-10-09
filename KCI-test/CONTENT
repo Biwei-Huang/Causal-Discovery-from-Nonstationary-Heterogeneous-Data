@@ -1,0 +1,20 @@
+
+- indtest_new: WRAPPER performing KCI-test, the conditional independence testing method submitted to UAI 2011;
+
+- UInd_KCItest: function to perform unconditional independence testing given in our paper; it is theoretically equiavalent to Gretton et al. (2008) but is computationally easier when generating the null distribution with simulations.
+
+- indtest_corr: partial correlation test;
+
+- indtest_hsic: WRAPPER performing either an HSIC test (Gretton et al., 2008) or CI_PERM
+
+
+DIRECTORIES:
+- algorithms: contains the functions which are called by the conditional independence testing method or the PC algorithm;
+
+- exp: contains the files used in simulations and experiments;
+
+- data: contains the real-world data used in the experiments.
+
+- CI_PERM: contains the functions which are used in CI_PERM, the conditional independence testing method which combines the conditional dependence measure (Fukumizu et al., 2008) and local boostrapping.
+
+- gpml-matlab: the gpml toolbox.
