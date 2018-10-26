@@ -5,7 +5,7 @@ Causal Discovery from Nonstationary/Heterogeneous Data. Copyright (c) 2017-2018 
 ### MAIN FUNCTIONS
 function [gns, g, SP] = nonsta_cd_new(X,cond_ind_test,maxFanIn,alpha) 
 
-* INPUT: 
+INPUT: 
  *  Data: - T*n matrix. T is number of data points and n is the number of observed variables 
  *  cond_ind_test: - function handle that computes p-values for X ind. Y given Z: (p_val = cond_ind_test(X, Y, Z, pars))
  *  maxFanIn: - maximum number of variables in the conditioning set 
