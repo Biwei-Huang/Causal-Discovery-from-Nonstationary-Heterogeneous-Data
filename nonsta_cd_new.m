@@ -163,7 +163,7 @@ while(length(Vns)>1)
     for i = 1:length(Vns)
         hypo_eff{i} = Vns(i);
         hypo_cau{i} = union(find(gns(Vns(i),1:end-1)==-1),find(gns(1:end-1,Vns(i))==1)');
-        score(i) = infer_nonsta_dir(X(:,hypo_cau{i}),X(:,hypo_eff{i}),1,1);
+        score(i) = infer_nonsta_dir(X(:,hypo_cau{i}),X(:,hypo_eff{i}),.1,1);
     end
     [~, id] = min(score);
     sink = Vns(id); % looking for the sink of the current graph
