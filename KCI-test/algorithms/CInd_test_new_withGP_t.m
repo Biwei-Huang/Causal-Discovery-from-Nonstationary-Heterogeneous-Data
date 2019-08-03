@@ -17,7 +17,7 @@ function [Sta, Cri, p_val, Cri_appr, p_appr] = CInd_test_new_withGP_t(x, y, z, a
 % Controlling parameters
 IF_unbiased = 0;
 IF_GP = 1;
-Approximate = 1;
+Approximate = 0;
 Bootstrap = 1; % Note: set to 0 to save time if you do not use simulation to generate the null !!!
 
 
