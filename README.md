@@ -24,6 +24,12 @@ OUTPUT:
  ### EXAMPLE 
 example1.m and example2.m give two examples in using this package.
 
+### Notes
+For large-scale systems, there are several ways to speed up the process:
+- Fix the kernel width with in conditional independence tests: set IF_GP = 1 at ./KCI-test/algorithms/CInd_test_new_withGP_t.
+- Approximate the kernel learning with random fourier feature, Nystrom Method, or other kernel approximation techniques.
+- Do a pre-processing step to remove some spurious edges, e.g., first using partial correlation to remove some edges.
+
 ### CITATION
  If you use this code, please cite the following paper:
 
