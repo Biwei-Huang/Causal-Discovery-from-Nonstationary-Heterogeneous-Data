@@ -1,12 +1,16 @@
-function [gns,g, SP] = nonsta_cd_new(X,cond_ind_test,maxFanIn,alpha)
+function [gns,g, SP] = nonsta_cd_new(X,cond_ind_test,c_indx,maxFanIn,alpha)
  % Constraint-based causal Discovery from Nonstationary/heterogeneous Data
 % INPUT: 
 %       Data: - T*n matrix. T is number of data points and n is the number
 %               of observed variables
 %       cond_ind_test: - function handle that computes p-values for X ind. Y given Z: 
 %                 (p_val = cond_ind_test(X, Y, Z, pars))
+%       c_indx: surrogate variable to capture the distribution shift. If
+%               data is nonstationary, then it is the time index. If data
+%               is from multiple domains, then it is the domain index
 %       maxFanIn:  - maximum number of variables in the conditioning set 
 %       alpha: - significance level of the independence test
+
 % OUTPUT:
 %       gns: - (n+1)*(n+1) matrix to represent recovered graph structure by
 %       the methods for Markov equivalence class learning on augmented
@@ -28,12 +32,7 @@ function [gns,g, SP] = nonsta_cd_new(X,cond_ind_test,maxFanIn,alpha)
 %               2017-2017  Kun Zhang
 % All rights reserved.  
 
-T = size(X,1); % number of samples
-
-% t as an additional variables to capture nonstationarity; one may replace t with others, 
-% such as conditions or domains
-t = [1:T]';
-X=[X,t]; 
+X=[X,c_indx]; % concatenate the surrogate variable with others
 X=X-repmat(mean(X),size(X,1),1);
 X=X*diag(1./std(X));
 
@@ -171,8 +170,6 @@ while(length(Vns)>1)
     gns(hypo_eff{id},hypo_cau{id}) = 0;
     Vns = setdiff(Vns,sink);
 end
-
-
 
 
 
