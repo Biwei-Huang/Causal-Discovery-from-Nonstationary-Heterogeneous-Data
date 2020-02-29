@@ -1,4 +1,4 @@
-% example 2
+% example 2: nonstationary data
 clear all,clc,close all
 addpath(genpath(pwd))
 
@@ -16,13 +16,18 @@ Data = [x1,x2,x3];
 alpha = 0.05; % signifcance level of independence test
 maxFanIn=2; % maximum number of conditional variables
 cond_ind_test='indtest_new_t';
-[gns, g, SP] = nonsta_cd_new(Data,cond_ind_test,maxFanIn,alpha)
+c_indx = [1:T]'; % surrogate variable to capture the distribution shift; 
+                 %here it is the time index, because the data is nonstationary
+[gns, g, SP] = nonsta_cd_new(Data,cond_ind_test,c_indx,maxFanIn,alpha)
 
 % INPUT: 
 %       Data: - T*N matrix. T is number of data points and N is the number
 %               of observed variables
 %       cond_ind_test: - function handle that computes p-values for X ind. Y given Z: 
 %                 (p_val = cond_ind_test(X, Y, Z, pars))
+%       c_indx: surrogate variable to capture the distribution shift. If
+%               the data is nonstationary, then it is the time index. If the data
+%               is from multiple domains, then it is the domain index
 %       maxFanIn:  - maximum number of variables in the conditioning set 
 %       alpha: - significance level of the independence test
 
