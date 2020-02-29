@@ -16,7 +16,7 @@ function [Sta, Cri, p_val, Cri_appr, p_appr] = CInd_test_new_withGP_t(x, y, z, a
 
 % Controlling parameters
 IF_unbiased = 0;
-IF_GP = 1;
+IF_GP = 1; % Set IF_GP=0 to speed up the process!!!
 Approximate = 0;
 Bootstrap = 1; % Note: set to 0 to save time if you do not use simulation to generate the null !!!
 
@@ -24,7 +24,7 @@ Bootstrap = 1; % Note: set to 0 to save time if you do not use simulation to gen
 T = length(y); % the sample size
 % Num_eig = floor(T/4); % how many eigenvalues are to be calculated?
 Num_eig = T;
-T_BS = 10000; % 5000
+T_BS = 5000; 
 lambda = 1E-3; % the regularization paramter  %%%%Problem
 Thresh = 1E-5;
 % normalize the data
@@ -43,9 +43,7 @@ if width ==0
     if T <= 200
         width = 1.2; % 0.8
     elseif T < 1200
-        %          width = 0.7; % 0.5
         width = 0.6;
-        %       width = 1;
     else
         width = 0.4; % 0.3
     end
@@ -70,9 +68,6 @@ if IF_GP
     covfunc = {'covSum', {'covSEard','covNoise'}};
     logtheta0 = [log(width * sqrt(D-1))*ones(D-1,1); log(.13) ; 0; log(sqrt(0.1))];
     fprintf('Optimizing hyperparameters in GP regression...\n');
-    %     [logtheta_x, fvals_x, iter_x] = minimize(logtheta0, 'gpr_multi', -150, covfunc, z, 1/std(eix(:,1)) * eix);
-    %     [logtheta_y, fvals_y, iter_y] = minimize(logtheta0, 'gpr_multi', -150, covfunc, z, 1/std(eiy(:,1)) * eiy);
-    % -200 or -350?
     
     %old gpml-toolbox
     %
@@ -83,27 +78,6 @@ if IF_GP
     
     logtheta_x
     logtheta_y
-    %% maybe necessary for augmented PC for fMRI
-%     
-%     
-%     tmp_T = [1:T]'; %%%
-%     tmp_T = tmp_T-mean(tmp_T);
-%     tmp_T = tmp_T/std(tmp_T);
-%     if(sum(abs(z(:,end)-tmp_T))<1e-8)
-%         if(logtheta_x(D)<log(0.5))
-%             logtheta_x(D) = log(0.5);
-%             [logtheta_x, fvals_x, iter_x] = minimize(logtheta_x, 'gpr_multi2', -350, covfunc, z, 2*sqrt(T) *eix * diag(sqrt(eig_Kx))/sqrt(eig_Kx(1)));
-%             logtheta_x
-%         end
-%         
-%         if(logtheta_y(D)<log(0.5))
-%             logtheta_y(D) = log(0.5);
-%             [logtheta_y, fvals_y, iter_y] = minimize(logtheta_y, 'gpr_multi2', -350, covfunc, z, 2*sqrt(T) *eiy * diag(sqrt(eig_Ky))/sqrt(eig_Ky(1)));
-%             logtheta_y
-%         end
-%     end
-%     
-    
     
     
     covfunc_z = {'covSEard'};
