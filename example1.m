@@ -1,7 +1,7 @@
 % example 1: nonstationary data
 clear all,clc,close all
 addpath(genpath(pwd))
-
+rng(10)
 % x1->x2->x3->x4, and the causal modules of x2 and x4 is nonstationary, and
 % their changes are related 
 T = 500;
