@@ -3,11 +3,12 @@
 Causal Discovery from Nonstationary/Heterogeneous Data. Copyright (c) 2017-2018 Kun Zhang & Biwei Huang
 
 ### MAIN FUNCTIONS
-function [gns, g, SP] = nonsta_cd_new(X,cond_ind_test,maxFanIn,alpha) 
+function [gns, g, SP] = nonsta_cd_new(X,cond_ind_test,c_indx,maxFanIn,alpha) 
 
 INPUT: 
  *  Data: - T*n matrix. T is number of data points and n is the number of observed variables 
  *  cond_ind_test: - function handle that computes p-values for X ind. Y given Z: (p_val = cond_ind_test(X, Y, Z, pars))
+ *  c_indx: surrogate variable to capture the distribution shift. If data is nonstationary, then it is the time index. If data is from multiple domains, then it is the domain index
  *  maxFanIn: - maximum number of variables in the conditioning set 
  *  alpha: - significance level of the independence test
 
@@ -20,9 +21,15 @@ OUTPUT:
    * the last row of g indicates the connection of nonstationarity indicator (C) with other observed variables 
    * ("gns" should have more oriented edges than "g") 
  * SP: - details of each independence test
- 
+
  ### EXAMPLE 
-example1.m and example2.m give two examples in using this package.
+example1.m, example2.m, and example3.m give three example of using this package. 
+Specifically, example1.m and example2.m are for nonstationary data, and example3.m is
+for data from multiple domains.
+
+### If there are multi-dimensional variables, use 
+  function [gns, g, SP] = nonsta_cd_new_multli(X,cond_ind_test,c_indx,maxFanIn,alpha)
+  Please see the example given in example3.m 
 
 ### Notes
 For large-scale systems, there are several ways to speed up the process:
@@ -33,7 +40,7 @@ For large-scale systems, there are several ways to speed up the process:
 ### CITATION
  If you use this code, please cite the following paper:
 
-1.  "Zhang, K., Huang, B., Zhang, J., Glymour, C., Schölkopf, B.. Causal Discovery from Nonstationary/Heterogeneous Data: Skeleton Estimation and Orientation Determination. IJCAI 2017."
-2.  "Huang, B., Zhang, K., Zhang, J., Glymour, C., Schölkopf, B. Behind Distribution Shift: Mining Driving Forces of Changes and Causal Arrows. ICDM 2017."
+1.  "Zhang, K., Huang, B., Zhang, J., Glymour, C., SchÃ¶lkopf, B.. Causal Discovery from Nonstationary/Heterogeneous Data: Skeleton Estimation and Orientation Determination. IJCAI 2017."
+2.  "Huang, B., Zhang, K., Zhang, J., Glymour, C., SchÃ¶lkopf, B. Behind Distribution Shift: Mining Driving Forces of Changes and Causal Arrows. ICDM 2017."
 
 If you have problems or questions, do not hesitate to send an email to  [biweih@andrew.cmu.edu](mailto:biweih@andrew.cmu.edu)
