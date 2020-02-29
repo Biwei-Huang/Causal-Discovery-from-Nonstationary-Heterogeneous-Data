@@ -1,7 +1,7 @@
 % example 1: heterogeneous data (data from multiple domains)
 clear all,clc,close all
 addpath(genpath(pwd))
-
+rng(10)
 % generate data from the first domain
 T_1 = 300;
 x1_1 = randn(T_1,1);
