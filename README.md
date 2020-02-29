@@ -40,7 +40,7 @@ For large-scale systems, there are several ways to speed up the process:
 ### CITATION
  If you use this code, please cite the following paper:
 
-1.  "Zhang, K., Huang, B., Zhang, J., Glymour, C., SchÃ¶lkopf, B.. Causal Discovery from Nonstationary/Heterogeneous Data: Skeleton Estimation and Orientation Determination. IJCAI 2017."
-2.  "Huang, B., Zhang, K., Zhang, J., Glymour, C., SchÃ¶lkopf, B. Behind Distribution Shift: Mining Driving Forces of Changes and Causal Arrows. ICDM 2017."
+1.  "Zhang, K., Huang, B., Zhang, J., Glymour, C., Schölkopf, B.. Causal Discovery from Nonstationary/Heterogeneous Data: Skeleton Estimation and Orientation Determination. IJCAI 2017."
+2.  "Huang, B., Zhang, K., Zhang, J., Glymour, C., Schölkopf, B. Behind Distribution Shift: Mining Driving Forces of Changes and Causal Arrows. ICDM 2017."
 
 If you have problems or questions, do not hesitate to send an email to  [biweih@andrew.cmu.edu](mailto:biweih@andrew.cmu.edu)
