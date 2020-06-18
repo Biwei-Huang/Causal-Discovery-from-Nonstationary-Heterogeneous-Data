@@ -57,6 +57,15 @@ for data from multiple domains.
   
   Please see the example givenin example3.m 
 
+%%%%%%%%%%%%%
+NOTES
+%%%%%%%%%%%%%
+For large-scale systems, there are several ways to speed up the process:
+
+1. Fix the kernel width in conditional independence tests: set IF_GP = 0 at ./KCI-test/algorithms/CInd_test_new_withGP_t.
+2. Approximate the kernel learning with random fourier feature, Nystrom Method, or other kernel approximation techniques.
+3. Do a pre-processing step to remove some spurious edges, e.g., first using partial correlation to remove some edges.
+
 
 %%%%%%%%%%%%%
 CITATION
@@ -64,7 +73,7 @@ CITATION
 If you use this code, please cite the following paper:
 1. "Zhang, K., Huang, B., Zhang, J., Glymour, C., Schölkopf, B.. Causal Discovery from Nonstationary/Heterogeneous Data: Skeleton Estimation and Orientation Determination. IJCAI 2017."
 2. "Huang, B., Zhang, K., Zhang, J., Glymour, C., Schölkopf, B. Behind Distribution Shift: Mining Driving Forces of Changes and Causal Arrows. ICDM 2017."
-
+3. Huang, B., Zhang, K., Zhang, J., Ramsey, J., Sanchez-Romero, R., Glymour, C., Schölkopf, B.. Causal Discovery from Heterogeneous/Nonstationary Data. JMLR, 21(89), 2020.
 
 If you have problems or questions, do not hesitate to send an email to biweih@andrew.cmu.edu
 
