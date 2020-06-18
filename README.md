@@ -1,6 +1,6 @@
 # Causal-Discovery-from-Nonstationary-Heterogeneous-Data
 
-Causal Discovery from Nonstationary/Heterogeneous Data. Copyright (c) 2017-2018 Kun Zhang & Biwei Huang
+Causal Discovery from Nonstationary/Heterogeneous Data. Copyright (c) 2017-2019 Biwei Huang & Kun Zhang
 
 ### MAIN FUNCTIONS
 function [gns, g, SP] = nonsta_cd_new(X,cond_ind_test,c_indx,maxFanIn,alpha) 
