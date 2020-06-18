@@ -1,9 +1,10 @@
 Copyright (c) 
- 2017-2018  Kun Zhang & Biwei Huang
+ 2017-2018  Biwei Huang & Kun Zhang
 
 This package contains code to the paper for causal discovery in the case of distribution shift
 1. "Zhang, K., Huang, B., Zhang, J., Glymour, C., Schölkopf, B.. Causal Discovery from Nonstationary/Heterogeneous Data: Skeleton Estimation and Orientation Determination. IJCAI 2017."
 2. "Huang, B., Zhang, K., Zhang, J., Romero. R., Glymour, C., Schölkopf, B. Behind Distribution Shift: Mining Driving Forces of Changes and Causal Arrows. ICDM 2017."
+3. 3. Huang, B., Zhang, K., Zhang, J., Ramsey, J., Sanchez-Romero, R., Glymour, C., Schölkopf, B.. Causal Discovery from Heterogeneous/Nonstationary Data. JMLR, 21(89), 2020.
 
 The code is written in Matlab R2017a.
 
