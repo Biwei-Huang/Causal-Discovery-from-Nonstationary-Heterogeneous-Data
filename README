@@ -1,5 +1,5 @@
 Copyright (c) 
- 2017-2018  Biwei Huang & Kun Zhang
+ 2017-2019  Biwei Huang & Kun Zhang
 
 This package contains code to the paper for causal discovery in the case of distribution shift
 1. "Zhang, K., Huang, B., Zhang, J., Glymour, C., Schölkopf, B.. Causal Discovery from Nonstationary/Heterogeneous Data: Skeleton Estimation and Orientation Determination. IJCAI 2017."
