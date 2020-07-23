@@ -30,7 +30,7 @@ for data from multiple domains.
 ### If there are multi-dimensional variables, use 
   function [gns, g, SP] = nonsta_cd_new_multli(X,dlabel,cond_ind_test,c_indx,maxFanIn,alpha)
   * dlabel: - In the case with multi-dimensional variables, we use dlable to indicat the index of each variable 
-  Please see the example given in example3.m 
+  Please see the example given in example4.m 
 
 ### Notes
 For large-scale systems, there are several ways to speed up the process:
