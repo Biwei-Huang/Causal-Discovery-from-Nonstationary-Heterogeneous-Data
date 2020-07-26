@@ -24,21 +24,6 @@ function [pval stat] = indtest_new_t(X, Y, Z, pars)
 % All rights reserved.  See the file COPYING for license terms.
 
 
-if ~isfield(pars,'pairwise')
-    pars.pairwise = false;
-end
-if ~isfield(pars,'bonferroni')
-    pars.bonferroni = false;
-end
-if ~isfield(pars,'width')
-    pars.width = 0;
-end
-if ~isfield(pars,'widthT')
-    pars.widthT = 0;
-end
-if ~isfield(pars,'if_GP1')
-    pars.if_GP1 = 1;
-end
 
 if size(X,2)>1||size(Y,2)>1
     % error('This test only works for one-dimensional random variables X and Y. Maybe it can be extended??')
