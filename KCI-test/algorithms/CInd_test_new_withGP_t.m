@@ -1,25 +1,27 @@
-function [Sta, Cri, p_val, Cri_appr, p_appr] = CInd_test_new_withGP_t(x, y, z, alpha, width)
+function [p_val, Sta, Cri] = CInd_test_new_withGP_t(x, y, z, alpha, pars)
 % To test if x and y are independent.
 % INPUT:
 %   The number of rows of x and y is the sample size.
 %   alpha is the significance level (we suggest 1%).
-%   width contains the kernel width.
+%   pars contains the kernel width and whether to use GP to optimize the kernel width.
 % Output:
 %   Cri: the critical point at the p-value equal to alpha obtained by bootstrapping.
 %   Sta: the statistic Tr(K_{\ddot{X}|Z} * K_{Y|Z}).
 %   p_val: the p value obtained by bootstrapping.
-%   Cri_appr: the critical value obtained by Gamma approximation.
-%   p_apppr: the p-value obtained by Gamma approximation.
 % If Sta > Cri, the null hypothesis (x is independent from y) is rejected.
 % Copyright (c) 2010-2011  ...
 % All rights reserved.  See the file COPYING for license terms.
 
 % Controlling parameters
+IF_GP = pars.if_GP1; % Set IF_GP=0 to speed up the process
+width = pars.width;
+if(pars.widthT==0) % kernel width on time index when IF_GP=0, need tunning!!!!!
+    widthT = 0.1;
+else
+    widthT = pars.widthT;
+end
 IF_unbiased = 0;
-IF_GP = 1; % Set IF_GP=0 to speed up the process!!!
-Approximate = 0;
-Bootstrap = 1; % Note: set to 0 to save time if you do not use simulation to generate the null !!!
-
+Bootstrap = 1; 
 
 T = length(y); % the sample size
 % Num_eig = floor(T/4); % how many eigenvalues are to be calculated?
@@ -66,7 +68,7 @@ if IF_GP
     [eig_Ky, eiy] = eigdec((Ky+Ky')/2, min(200, floor(T/5))); % /3
     % disp('  covfunc = {''covSum'', {''covSEard'',''covNoise''}};')
     covfunc = {'covSum', {'covSEard','covNoise'}};
-    logtheta0 = [log(width * sqrt(D-1))*ones(D-1,1); log(.13) ; 0; log(sqrt(0.1))];
+    logtheta0 = [log(width * sqrt(D))*ones(D,1); 0; log(sqrt(0.1))];
     fprintf('Optimizing hyperparameters in GP regression...\n');
     
     %old gpml-toolbox
@@ -98,8 +100,19 @@ if IF_GP
     % degrees of freedom
     df_x = trace(eye(T)-P1_x);
     df_y = trace(eye(T)-P1_y);
-else
-    Kz = kernel(z, z, [theta,1]); Kz = H * Kz * H; %*4 % as we will calculate Kz
+else   
+    % check whether the last dimension of z is the time index
+    tmp = [1:T]';
+    tmp = tmp - repmat(mean(tmp), T, 1);
+    tmp = tmp * diag(1./std(tmp));
+    if(norm(z(:,end)-tmp)<1e-5)
+        covfunc_z = {'covSEard'};
+        logtheta = [log(width * sqrt(D-1))*ones(D-1,1); log(widthT) ; 0];
+        Kz = feval(covfunc_z{:}, logtheta, z);
+    else
+        Kz = kernel(z, z, [theta,1]);
+    end
+    Kz = H * Kz * H;
     % Kernel matrices of the errors
     P1 = (eye(T) - Kz*pdinv(Kz + lambda*eye(T)));
     Kxz = P1* Kx * P1';
@@ -115,14 +128,6 @@ end
 % Due to numerical issues, Kxz and Kyz may not be symmetric:
 [eig_Kxz, eivx] = eigdec((Kxz+Kxz')/2,Num_eig);
 [eig_Kyz, eivy] = eigdec((Kyz+Kyz')/2,Num_eig);
-% prod_F = (eivx.^2)' * (eivy.^2); %%% new method
-% % calculate Cri...
-% % first calculate the product of the eigenvalues
-% eig_prod = stack( (eig_Kxz * ones(1,Num_eig)) .* (ones(Num_eig,1) * eig_Kyz'));
-% II = find(eig_prod > max(eig_prod) * Thresh);
-% eig_prod = eig_prod(II); %%% new method
-% eiv_prod = stack( prod_F ); %%% new method
-% eiv_prod = eiv_prod(II);
 
 % calculate the product of the square root of the eigvector and the eigen
 % vector
@@ -164,8 +169,6 @@ p_val=-1;
 if Bootstrap
     % use mixture of F distributions to generate the Null dstr
     if length(eig_uu) * T < 1E6
-        %     f_rand1 = frnd(1,T-2-df, length(eig_prod),T_BS);
-        %     Null_dstr = eig_prod'/(T-1) * f_rand1;
         f_rand1 = chi2rnd(1,length(eig_uu),T_BS);
         if IF_unbiased
             Null_dstr = T^2/(T-1-df_x)/(T-1-df_y) * eig_uu' * f_rand1; %%%%Problem
@@ -178,8 +181,6 @@ if Bootstrap
         Length = max(floor(1E6/T),100);
         Itmax = floor(length(eig_uu)/Length);
         for iter = 1:Itmax
-            %         f_rand1 = frnd(1,T-2-df, Length,T_BS);
-            %         Null_dstr = Null_dstr + eig_prod((iter-1)*Length+1:iter*Length)'/(T-1) * f_rand1;
             f_rand1 = chi2rnd(1,Length,T_BS);
             if IF_unbiased
                 Null_dstr = Null_dstr + T^2/(T-1-df_x)/(T-1-df_y) *... %%%%Problem
@@ -190,30 +191,9 @@ if Bootstrap
             end
             
         end
-        %         frnd(1,T-2-df, length(eig_prod) - Itmax*Length,T_BS);
     end
-    %         % use chi2 to generate the Null dstr:
-    %         f_rand2 = chi2rnd(1, length(eig_prod),T_BS);
-    %         Null_dstr = eig_prod'/(TT(epoch)-1) * f_rand2;
     sort_Null_dstr = sort(Null_dstr);
     Cri = sort_Null_dstr(ceil((1-alpha)*T_BS));
     p_val = sum(Null_dstr>Sta)/T_BS;
 end
 
-
-
-
-
-Cri_appr=-1;
-p_appr=-1;
-if Approximate
-    %     mean_appr = sum(eig_prod.* eiv_prod);
-    %     mean_appr = sum(eig_uu);
-    mean_appr = trace(uu_prod);
-    %     var_appr = 2*sum( (eig_uu).^2 );
-    var_appr = 2*trace(uu_prod^2);
-    k_appr = mean_appr^2/var_appr;
-    theta_appr = var_appr/mean_appr;
-    Cri_appr = gaminv(1-alpha, k_appr, theta_appr);
-    p_appr = 1-gamcdf(Sta, k_appr, theta_appr);
-end
