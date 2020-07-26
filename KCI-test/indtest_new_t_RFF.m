@@ -1,4 +1,4 @@
-function [pval stat] = indtest_new_t(X, Y, Z, pars)
+function [pval stat] = indtest_new_t_RFF(X, Y, Z, pars)
 % function [pval] = indtest_new(X, Y, Z, pars)
 %
 %
@@ -26,19 +26,13 @@ function [pval stat] = indtest_new_t(X, Y, Z, pars)
 
 if ~isfield(pars,'pairwise')
     pars.pairwise = false;
-end
+end;
 if ~isfield(pars,'bonferroni')
     pars.bonferroni = false;
-end
+end;
 if ~isfield(pars,'width')
     pars.width = 0;
-end
-if ~isfield(pars,'widthT')
-    pars.widthT = 0;
-end
-if ~isfield(pars,'if_GP1')
-    pars.if_GP1 = 1;
-end
+end;
 
 if size(X,2)>1||size(Y,2)>1
     % error('This test only works for one-dimensional random variables X and Y. Maybe it can be extended??')
@@ -50,7 +44,7 @@ if isempty(Z) %unconditional HSIC
         p = zeros(size(X,2),size(Y,2));
         for i = 1:size(X,2)
             for j = 1:size(Y,2)
-                [sta(i,j), Cri, p_vala, Cri_appr, p(i,j)] = UInd_KCItest(X(:,i), X(:,j), pars);
+                [sta(i,j), Cri, p_vala, Cri_appr, p(i,j)] = UInd_KCItest_RFF(X(:,i), X(:,j), pars);
             end
         end
         [pp iii] = min(p);
@@ -60,10 +54,10 @@ if isempty(Z) %unconditional HSIC
 	        pval=size(X,2)*size(Y,2)*pval;
         end
     else
-        [pval stat] = UInd_KCItest(X, Y, pars);
+        [pval stat] = UInd_KCItest_RFF(X, Y, pars.width);
     end
 else % conditional independence test
-    [pval, stat, Cri] = CInd_test_new_withGP_t(X, Y, Z, 0.01, pars);
+    [pval, stat, Cri] = CInd_test_new_withGP_t_RFF(X, Y, Z, 0.01, pars);
 end
 
 return
