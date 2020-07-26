@@ -44,7 +44,7 @@ if isempty(Z) %unconditional HSIC
 	        pval=size(X,2)*size(Y,2)*pval;
         end
     else
-        [pval stat] = UInd_KCItest_RFF(X, Y, pars.width);
+        [pval stat] = UInd_KCItest_RFF(X, Y, pars);
     end
 else % conditional independence test
     [pval, stat, Cri] = CInd_test_new_withGP_t_RFF(X, Y, Z, 0.01, pars);
