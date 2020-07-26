@@ -13,7 +13,7 @@ INPUT:
  *  alpha: - significance level of the independence test
  *  Type: - run corresponding phases of CD-NOD
    *  If Type=0, run all phases of CD-NOD (including 
-    -  phase 1: learning causal skeleton, 
+    **  phase 1: learning causal skeleton, 
     -  phase 2: identifying causal directions with generalization of invariance, 
     -  phase 3: identifying directions with independent change principle, and 
     -  phase 4: recovering the nonstationarity driving force)).
