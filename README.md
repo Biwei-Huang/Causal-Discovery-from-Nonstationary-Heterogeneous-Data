@@ -24,17 +24,17 @@ INPUT:
 
 
 OUTPUT:
- *  g_skeleton: - (n+1)*(n+1) matrix to represent recovered causal skeleton over augmented set of variables
-   *  i-j: gns(i,j)=-1 & gns(j,i)=-1; i j: gns(i,j)=0 & gns(j,i)=0
-   *  - the last row of gns indicates the connection of nonstationarity indicator (C) with other observed variables
- *  g_inv: - (n+1)*(n+1) matrix to represent recovered graph structure up to the Markov equivalence class learning on augmented causal graph, with directions inferred by generalization of invariance
+ *  g_skeleton: (n+1)*(n+1) matrix to represent recovered causal skeleton over augmented set of variables
+   *  i-j: g_skeleton(i,j)=-1 & g_skeleton(j,i)=-1; i j: g_skeleton(i,j)=0 & g_skeleton(j,i)=0
+   *  the last row of gns indicates the connection of nonstationarity indicator (C) with other observed variables
+ *  g_inv: (n+1)*(n+1) matrix to represent recovered graph structure up to the Markov equivalence class learning on augmented causal graph, with directions inferred by generalization of invariance
    *  i->j: g_inv(i,j)=1; i-j: g_inv(i,j)=-1; i j: g(i,j)=0
-   *  - the last row of g indicates the connection of nonstationarity indicator (C) with other observed variables
- *  gns: - (n+1)*(n+1) matrix to represent recovered graph structure, with directions inferred by generalization of invariance & independent change principle
+   *  the last row of g indicates the connection of nonstationarity indicator (C) with other observed variables
+ *  gns: (n+1)*(n+1) matrix to represent recovered graph structure, with directions inferred by generalization of invariance & independent change principle
    *  i->j: gns(i,j)=1; i-j: gns(i,j)=-1; i j: gns(i,j)=0
-   *  - the last row of gns indicates the connection of nonstationarity indicator (C) with other observed variables
+   *  the last row of gns indicates the connection of nonstationarity indicator (C) with other observed variables
    *  ("gns" should have more oriented edges than "g_inv")
- *  SP: - details of each independence test
+ *  SP: details of each independence test
 
 
  ### EXAMPLE 
