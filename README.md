@@ -12,11 +12,7 @@ INPUT:
  *  maxFanIn:  - maximum number of variables in the conditioning set
  *  alpha: - significance level of the independence test
  *  Type: - run corresponding phases of CD-NOD
-   *  If Type=0, run all phases of CD-NOD (including 
-    **  phase 1: learning causal skeleton, 
-    -  phase 2: identifying causal directions with generalization of invariance, 
-    -  phase 3: identifying directions with independent change principle, and 
-    -  phase 4: recovering the nonstationarity driving force)).
+   *  If Type=0, run all phases of CD-NOD (including phase 1: learning causal skeleton, phase 2: identifying causal directions with generalization of invariance, phase 3: identifying directions with independent change principle, and phase 4: recovering the nonstationarity driving force).
    *  If Type = 1, perform phase 1 + phase 2 + phase 3 
    *  If Type = 2, perform phase 1 + phase 2
    *  If Type = 3, only perform phase 1
