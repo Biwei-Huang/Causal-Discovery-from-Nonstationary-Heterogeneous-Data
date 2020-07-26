@@ -56,6 +56,25 @@ function [g_skeleton, g_inv, gns, SP] = nonsta_cd_new(X,cond_ind_test,c_indx,max
 % Copyright (c) 2017  Biwei Huang & Kun Zhang
 % All rights reserved.
 
+if ~isfield(pars,'pairwise')
+    pars.pairwise = false;
+end
+if ~isfield(pars,'bonferroni')
+    pars.bonferroni = false;
+end
+if ~isfield(pars,'width')
+    pars.width = 0;
+end
+if ~isfield(pars,'widthT')
+    pars.widthT = 0;
+end
+if ~isfield(pars,'if_GP1')
+    pars.if_GP1 = 1;
+end
+if ~isfield(pars,'if_GP2')
+    pars.if_GP2 = 1;
+end
+
 X=[X,c_indx]; % concatenate the surrogate variable C with others
 X=X-repmat(mean(X),size(X,1),1);
 X=X*diag(1./std(X));
