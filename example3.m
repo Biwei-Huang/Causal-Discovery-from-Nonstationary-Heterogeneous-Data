@@ -44,7 +44,7 @@ pars.pairwise = false;
 pars.bonferroni = false;
 pars.if_GP1 = IF_GP; % for conditional independence test
 pars.if_GP2 = 1;  % for direction determination with independent change principle & nonstationary driving force visualization
-pars.width = 0; % kernel width on observational variables (except the time index). If it is 0, then use the default kernel width when IF_GP = 0
+pars.width = 0.4; % kernel width on observational variables (except the time index). If it is 0, then use the default kernel width when IF_GP = 0
 pars.widthT = 0; % the kernel width on the time index; set it to zero for domain-varying data
 c_indx = [ones(1,T_1),2*ones(1,T_2)]'; % surrogate variable to capture the distribution shift; 
                  %here it is the doamin index, because the data is from multiple domains
