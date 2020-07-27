@@ -26,6 +26,7 @@ Data = [Data_1;Data_2];
 %% set the parameters
 alpha = 0.05; % signifcance level of independence test
 maxFanIn = 2; % maximum number of conditional variables
+T  = size(Data,1);
 if (T<=1000) % for small sample size, use GP to learn the kernel width in conditional independence tests
     cond_ind_test='indtest_new_t';
     IF_GP = 1; 
